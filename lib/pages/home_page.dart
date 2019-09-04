@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
       });
     }).catchError((error) {
       setState(() {
-        resultString = jsonEncode(error);
+        resultString = json.encode(error);
       });
     });
   }
