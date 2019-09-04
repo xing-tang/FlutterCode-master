@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_develop/dao/home_dao.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'dart:convert';
 
 //设置最大的滚动距离
 const APPBAR_SCROLL_OFFSET = 100;
@@ -16,6 +18,13 @@ class _HomePageState extends State<HomePage> {
     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567525891498&di=9256e71db8a69748f665cc859cb3505b&imgtype=0&src=http%3A%2F%2Fimg8.zol.com.cn%2Fbbs%2Fupload%2F13484%2F13483726_0800.jpg",
   ];
   double appBarAlpha = 0;
+  String resultString = "";
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +83,18 @@ class _HomePageState extends State<HomePage> {
         )
       ],
     ));
+  }
+
+  void loadData() {
+    HomeDao.fetch().then((result) {
+      setState(() {
+        resultString = json.encode(result);
+      });
+    }).catchError((error) {
+      setState(() {
+        resultString = jsonEncode(error);
+      });
+    });
   }
 
   void _onScroll(offset) {
