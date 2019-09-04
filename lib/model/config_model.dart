@@ -1,5 +1,5 @@
 class ConfigModel {
-  final String searchUrl;
+  String searchUrl;
 
   ConfigModel({
     this.searchUrl,
@@ -12,8 +12,8 @@ class ConfigModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data["searchUrl"] = this.searchUrl;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['searchUrl'] = this.searchUrl;
     return data;
   }
 }

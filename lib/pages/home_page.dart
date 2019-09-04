@@ -89,10 +89,12 @@ class _HomePageState extends State<HomePage> {
     HomeDao.fetch().then((result) {
       setState(() {
         resultString = json.encode(result);
+        print("打印请求成功的数据=>" + resultString);
       });
     }).catchError((error) {
       setState(() {
         resultString = json.encode(error);
+        print("打印请求失败的数据=>" + resultString);
       });
     });
   }
